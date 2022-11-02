@@ -20,13 +20,13 @@ export default function Form(props) {
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
 
-        <form autoComplete="off">
+        <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
             placeholder="Enter Student Name"
-            value={props.student}
+            value={student}
             onChange={(e) => setStudent(e.target.value)}
           />
         </form>
@@ -35,14 +35,14 @@ export default function Form(props) {
           interviewers={props.interviewers}
           interviewer={props.interviewer}
           setInterviewer={setInterviewer}
-          value={props.interviewer}
+          value={interviewer}
         />
       </section>
 
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick={props.onSave}>Save</Button>
+          <Button confirm onClick={() => props.onSave(student, interviewer)}>Save</Button>
         </section>
 
       </section>
