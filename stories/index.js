@@ -13,6 +13,8 @@ import Appointment from "components/Appointment/index.jsx";
 import Header from "components/Appointment/Header.jsx";
 import Empty from "components/Appointment/Empty.jsx";
 import Show from "components/Appointment/Show.jsx";
+import Confirm from "components/Appointment/Confirm.jsx";
+import Status from "components/Appointment/Status.jsx";
 
 storiesOf("Button", module)
   .addParameters({
@@ -140,19 +142,17 @@ storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
-  .add("Appointment", () => <Appointment />)
-  .add("Appointment with Time", () => <Appointment time="12pm" />)
-  .add("Header", () => <Header time="12pm" />);
-
-storiesOf("Empty", module)
-  .addParameters({
-    backgrounds: [{ name: "white", value: "#fff", default: true }]
-  })
-  .add("Empty onAdd", () => <Empty onAdd={action("onAdd")} />);
-
-storiesOf("Show", module)
-  .addParameters({
-    backgrounds: [{ name: "white", value: "#fff", default: true }]
-  })
-  .add("Show", () => <Show onEdit={action("onEdit")} onDelete={action("onDelete")} />)
-  // .add("Appointment with Time", () => <Appointment time="12pm" />)
+  .add("Appointment",
+    () => <Appointment />)
+  .add("Appointment with Time",
+    () => <Appointment time="12pm" />)
+  .add("Header",
+    () => <Header time="12pm" />)
+  .add("Empty onAdd",
+    () => <Empty onAdd={action("onAdd")} />)
+  .add("Show",
+    () => <Show onEdit={action("onEdit")} onDelete={action("onDelete")} />)
+  .add("Confirm",
+    () => <Confirm onConfirm={action("onConfirm")} onCancel={action("onCancel")} />)
+  .add("Status => Deleting",
+    () => <Status />);
