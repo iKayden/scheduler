@@ -50,6 +50,7 @@ export default function Application(props) {
   const parsedAppointments = Object.values(appointments).map((appointment) => (
     <Appointment key={appointment.id}  {...appointment} />
   ));
+  // Main useState object
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -57,11 +58,13 @@ export default function Application(props) {
     appointments: {}
   });
 
-
+  // Helper functions for main useState
   const setDay = day => setState({ ...state, day });
   const setDays = days => {
     setState(prev => ({ ...prev, days }));
   };
+
+  // Fetching the data from our API with axios
   useEffect(() => {
     axios.get("/api/days")
       .then((res) => {
@@ -72,6 +75,7 @@ export default function Application(props) {
 
   return (
     <main className="layout">
+
       <section className="sidebar">
         <img
           className="sidebar--centered"
@@ -79,6 +83,7 @@ export default function Application(props) {
           alt="Interview Scheduler"
         />
         <hr className="sidebar__separator sidebar--centered" />
+
         <nav className="sidebar__menu">
           <DayList
             days={state.days}
@@ -86,16 +91,19 @@ export default function Application(props) {
             onChange={setDay}
           />
         </nav>
+
         <img
           className="sidebar__lhl sidebar--centered"
           src="images/lhl.png"
           alt="Lighthouse Labs"
         />
       </section>
+
       <section className="schedule">
         {parsedAppointments}
         <Appointment key="last" time="5pm" />
       </section>
+
     </main>
   );
 }
