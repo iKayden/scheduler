@@ -15,6 +15,8 @@ import Empty from "components/Appointment/Empty.jsx";
 import Show from "components/Appointment/Show.jsx";
 import Confirm from "components/Appointment/Confirm.jsx";
 import Status from "components/Appointment/Status.jsx";
+import Error from "components/Appointment/Error.jsx";
+import Form from "components/Appointment/Form.jsx";
 
 storiesOf("Button", module)
   .addParameters({
@@ -148,11 +150,34 @@ storiesOf("Appointment", module)
     () => <Appointment time="12pm" />)
   .add("Header",
     () => <Header time="12pm" />)
-  .add("Empty onAdd",
+  .add("Empty",
     () => <Empty onAdd={action("onAdd")} />)
   .add("Show",
     () => <Show onEdit={action("onEdit")} onDelete={action("onDelete")} />)
   .add("Confirm",
     () => <Confirm onConfirm={action("onConfirm")} onCancel={action("onCancel")} />)
   .add("Status => Deleting",
-    () => <Status />);
+    () => <Status />)
+  .add("Error",
+    () => <Error onClose={action("onClose")} />);
+
+storiesOf("Form", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Edit", () =>
+    <Form
+      setInterviewer={action("setInterviewer")}
+      student="Kayden"
+      interviewers={interviewers}
+      interviewer={1}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
+    />)
+  .add("Create", () =>
+    <Form
+      setInterviewer={action("setInterviewer")}
+      interviewers={interviewers}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
+    />);
