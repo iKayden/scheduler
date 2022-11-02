@@ -1,26 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DayList from "./DayList";
 import "components/Application.scss";
 import "components/Appointment";
 import Appointment from "components/Appointment";
-// Mock Data Bases 
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
+import axios from "axios";
+
+
 const appointments = {
   "1": {
     id: 1,
@@ -66,6 +51,14 @@ export default function Application(props) {
     <Appointment key={appointment.id}  {...appointment} />
   ));
   const [day, setDay] = useState("Monday");
+  const [days, setDays] = useState([]);
+
+  useEffect(() => {
+    axios.get("/api/days")
+      .then((res) => {
+        setDays([...res.data]);
+      });
+  }, []);
 
   return (
     <main className="layout">
