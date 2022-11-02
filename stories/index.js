@@ -12,6 +12,7 @@ import InterviewerList from "components/InterviewerList";
 import Appointment from "components/Appointment/index.jsx";
 import Header from "components/Appointment/Header.jsx";
 import Empty from "components/Appointment/Empty.jsx";
+import Show from "components/Appointment/Show.jsx";
 
 storiesOf("Button", module)
   .addParameters({
@@ -148,3 +149,10 @@ storiesOf("Empty", module)
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
   .add("Empty onAdd", () => <Empty onAdd={action("onAdd")} />);
+
+storiesOf("Show", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Show", () => <Show onEdit={action("onEdit")} onDelete={action("onDelete")} />)
+  // .add("Appointment with Time", () => <Appointment time="12pm" />)
