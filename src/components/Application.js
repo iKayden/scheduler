@@ -6,44 +6,6 @@ import Appointment from "components/Appointment";
 import axios from "axios";
 import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
-//   "1": {
-//     id: 1,
-//     time: "12pm",
-//   },
-//   "2": {
-//     id: 2,
-//     time: "1pm",
-//     interview: {
-//       student: "Lydia Miller-Jones",
-//       interviewer: {
-//         id: 3,
-//         name: "Sylvia Palmer",
-//         avatar: "https://i.imgur.com/LpaY82x.png",
-//       }
-//     }
-//   },
-//   "3": {
-//     id: 3,
-//     time: "2pm",
-//   },
-//   "4": {
-//     id: 4,
-//     time: "3pm",
-//     interview: {
-//       student: "Archie Andrews",
-//       interviewer: {
-//         id: 4,
-//         name: "Cohana Roy",
-//         avatar: "https://i.imgur.com/FK8V841.jpg",
-//       }
-//     }
-//   },
-//   "5": {
-//     id: 5,
-//     time: "4pm",
-//   }
-// };
-
 
 export default function Application(props) {
 
@@ -83,7 +45,6 @@ export default function Application(props) {
       promise_appointments,
       promise_interviewers
     ]).then((res) => {
-      console.log("RES INTERVIEWERS", res[2].data);
       setState(prev => ({ ...prev, days: res[0].data, appointments: res[1].data, interviewers: res[2].data }));
     });
   }, []);
