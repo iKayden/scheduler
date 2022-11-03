@@ -5,7 +5,9 @@ export default function useVisualMode(initialMode) {
   const [mode, setMode] = useState(initialMode);
   const [history, setHistory] = useState([initialMode]);
 
-  const transition = (initialMode) => {
+  const transition = (initialMode, replace = false) => {
+    // In some situations we'll transition twice and then have the back action return us to the initial state. 
+    if (replace) history.pop();
     setMode(initialMode);
     history.push(initialMode);
   };
