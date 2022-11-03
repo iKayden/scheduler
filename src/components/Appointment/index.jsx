@@ -16,6 +16,9 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
+  console.log("PROPS INTERVIEWERS", props.interviewers); //three different props
+  // only last one is good
+
   return (
     <article className="appointment">
       <Header time={props.time} />
