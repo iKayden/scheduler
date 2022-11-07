@@ -16,11 +16,7 @@ export function getInterview(state, interview) {
   if (!interview) return null;
   return {
     student: interview.student,
-    interviewer: {
-      id: interview.interviewer,
-      name: state.interviewers[interview.interviewer].name,
-      avatar: state.interviewers[interview.interviewer].avatar
-    }
+    interviewer: state.interviewers[interview.interviewer]
   };
 }
 
@@ -29,12 +25,10 @@ export function getInterviewersForDay(state, day) {
   if (!state.days.length || !filteredDays.length) {
     return [];
   }
-  const exctractedInterviewers = filteredDays[0];
+  const extractedInterviewers = filteredDays[0];
   let formattedInterviewers = [];
-  for (let interviewer of exctractedInterviewers.interviewers) {
-    console.log("STATE", state.interviewers[interviewer]);
+  for (let interviewer of extractedInterviewers.interviewers) {
     formattedInterviewers.push(state.interviewers[interviewer]);
   }
-  console.log("FORMATED", formattedInterviewers);
   return formattedInterviewers;
 }
