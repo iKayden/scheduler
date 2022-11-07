@@ -26,8 +26,10 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({ ...state, appointments });
-    return axios.put(`/api/appointments/${id}`, appointment);
+    return axios.put(`/api/appointments/${id}`, appointment)
+      .then(() => {
+        setState({ ...state, appointments });
+      });
   }
 
   function cancelInterview(id) {
@@ -39,8 +41,11 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({ ...state, appointments });
-    return axios.delete(`/api/appointments/${id}`);
+
+    return axios.delete(`/api/appointments/${id}`)
+      .then(() => {
+        setState({ ...state, appointments });
+      });
   }
 
   const appointments = getAppointmentsForDay(state, state.day);
