@@ -41,7 +41,7 @@ export default function Application(props) {
   //Variables with promises
   const promise_days = axios.get("/api/days");
   const promise_appointments = axios.get("/api/appointments");
-  const promise_interviewers = axios.get("api/interviewers");
+  const promise_interviewers = axios.get("/api/interviewers");
 
   // Fetching the data from our API with axios
   useEffect(() => {
@@ -50,6 +50,7 @@ export default function Application(props) {
       promise_appointments,
       promise_interviewers
     ]).then((res) => {
+      // console.log("RES", res);
       setState(prev => ({ ...prev, days: res[0].data, appointments: res[1].data, interviewers: res[2].data }));
     });
   }, []);

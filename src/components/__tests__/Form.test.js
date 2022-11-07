@@ -19,7 +19,7 @@ describe("Form", () => {
     }
   ];
 
-  it("renders", () => {
+  it("renders without crushing", () => {
     render(
       <Form
         interviewers={interviewers}
