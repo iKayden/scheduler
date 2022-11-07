@@ -153,11 +153,19 @@ storiesOf("Appointment", module)
   .add("Empty",
     () => <Empty onAdd={action("onAdd")} />)
   .add("Show",
-    () => <Show onEdit={action("onEdit")} onDelete={action("onDelete")} />)
+    () => <Show student={"Lydia Miller-Jones"} interviewer={interviewer} onEdit={action("onEdit")} onDelete={action("onDelete")} />)
   .add("Confirm",
-    () => <Confirm onConfirm={action("onConfirm")} onCancel={action("onCancel")} />)
+    () => <Confirm onConfirm={action("onConfirm")} onCancel={action("onCancel")} message={"DELETE THE APPOINTMENT?"} />)
   .add("Status => Deleting",
     () => <Status />)
+  .add("Edit",
+    () => <Form
+      name={"Test Name"}
+      interviewer={1}
+      interviewers={interviewers}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
+    />)
   .add("Error",
     () => <Error onClose={action("onClose")} />)
   .add("Appointment Empty",

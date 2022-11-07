@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 export default function Form(props) {
-  const [student, setStudent] = useState(props.student || "");
+  const [student, setStudent] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
   const reset = () => {
@@ -14,13 +14,16 @@ export default function Form(props) {
     reset();
     props.onCancel();
   };
-
+  console.log("FROM FORM", props.student);
 
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
 
-        <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
+        <form
+          autoComplete="off"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
@@ -33,7 +36,6 @@ export default function Form(props) {
 
         <InterviewerList
           interviewers={props.interviewers}
-          // interviewer={props.interviewer}
           setInterviewer={setInterviewer}
           value={interviewer}
         />
