@@ -4,10 +4,14 @@ Simple interview scheduler which a user can book, edit, and cancel an interview.
 
 # Screenshots
 
-!["screenshot of the first page"]("")
-!["screenshot of booking a new appointment"]("")
-!["screenshot of saving the new appointment"]("")
-!["screenshot of completed"]("")
+- This is the way the Scheduler looks at the first glance. !["screenshot of initial look"]("public/images/github/gh1.png")
+- We can add an appointment to any free spot !["screenshot of booking a new appointment"]("public/images/github/gh2.png")
+- We can write down you name and choose an interviewer, it can be edited later! (Validation is present)
+- As soon as we are done with our appointment we can save it to our database. !["screenshot of saving the new appointment"]("public/images/github/gh3.png")
+  !["saved"]("public/images/github/gh4.png")
+- Whenever it saved it will be displayed. If we hover over we will see extra options. One of them is to delete an appointment.
+  !["screenshot of completed appointment."]("public/images/github/gh5.png")
+- After we confirmed our cancellation we will see an animation with the process! !["After we confirmed our cancellation we will see an animation with the process!"]("public/images/github/gh6.png")
 
 ## Setup
 
