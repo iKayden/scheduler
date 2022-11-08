@@ -10,6 +10,7 @@ import Error from "./Error";
 import Status from "./Status";
 import Confirm from "./Confirm";
 
+// Variables with different "mode" setting for the appointment window
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
@@ -21,11 +22,14 @@ const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
+  // using our custom hook to control state of the Appointment with "mode"
+  // transition function is responsible for switching between states(modes) of the appointment
+  // back function is used when we need to make a step back to the previous mode
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
 
-
+  // functions for adding extra appointment or deleting existing one
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -33,6 +37,7 @@ export default function Appointment(props) {
     };
     transition(SAVING);
     props
+      // makes a PUT request and changes the number of spots left
       .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
       .catch((error) => {
@@ -43,6 +48,7 @@ export default function Appointment(props) {
   const deleteInterview = () => {
     transition(DELETING, true);
     props
+      // makes a DELETE request and increases the number of spots left
       .cancelInterview(props.id)
       .then(() => {
         transition(EMPTY);

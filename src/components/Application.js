@@ -19,8 +19,10 @@ export default function Application(props) {
   } = useApplicationData();
 
 
-
+  // using helper function for getting state.appointments for the day we need
   const appointments = getAppointmentsForDay(state, state.day);
+
+  // Mapping out fetched appointments into our component
   const schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     return (
@@ -38,21 +40,26 @@ export default function Application(props) {
   });
 
 
-  //Variables with promises
+  //Variables with axios get URLs for our Promise array
   const promise_days = axios.get("/api/days");
   const promise_appointments = axios.get("/api/appointments");
   const promise_interviewers = axios.get("/api/interviewers");
 
-  // Fetching the data from our API with axios
+  // Fetching all the data from our API with Promise.all function
   useEffect(() => {
     Promise.all([
       promise_days,
       promise_appointments,
       promise_interviewers
     ]).then((res) => {
-      setState(prev => ({ ...prev, days: res[0].data, appointments: res[1].data, interviewers: res[2].data }));
+      setState(prev =>
+      ({
+        ...prev, days: res[0].data,
+        appointments: res[1].data,
+        interviewers: res[2].data
+      }));
     });
-  }, []);
+  }, []); //keeping this array empty so there won't be an infinite get request loop
 
 
   return (
