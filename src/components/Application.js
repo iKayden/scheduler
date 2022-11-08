@@ -50,7 +50,6 @@ export default function Application(props) {
       promise_appointments,
       promise_interviewers
     ]).then((res) => {
-      // console.log("RES", res);
       setState(prev => ({ ...prev, days: res[0].data, appointments: res[1].data, interviewers: res[2].data }));
     });
   }, []);

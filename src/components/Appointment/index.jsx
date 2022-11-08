@@ -103,8 +103,6 @@ export default function Appointment(props) {
 
       {mode === ERROR_DELETE &&
         <Error message={"Could not delete your appointment"} onClose={() => back()} />}
-      {/* bug after onClose */}
-      {/* TypeError: Cannot read properties of null (reading 'student') */}
 
     </article>
   );
