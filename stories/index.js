@@ -125,18 +125,13 @@ storiesOf("InterviewerList", module)
   .add("Initial", () => (
     <InterviewerList
       interviewers={interviewers}
+      onChange={action("setInterviewer")}
     />
   ))
   .add("Selected", () => (
     <InterviewerList
       interviewers={interviewers}
       value={3}
-    />
-  ))
-  .add("Clickable", () => (
-    <InterviewerList
-      interviewers={interviewers}
-      onChange={action("setInterviewer")}
     />
   ));
 
@@ -157,17 +152,19 @@ storiesOf("Appointment", module)
   .add("Confirm",
     () => <Confirm onConfirm={action("onConfirm")} onCancel={action("onCancel")} message={"DELETE THE APPOINTMENT?"} />)
   .add("Status => Deleting",
-    () => <Status />)
+    () => <Status message={"Deleting your appointment"} />)
   .add("Edit",
     () => <Form
-      name={"Test Name"}
+      student={"Test Name"}
       interviewer={1}
       interviewers={interviewers}
       onSave={action("onSave")}
       onCancel={action("onCancel")}
     />)
   .add("Error",
-    () => <Error onClose={action("onClose")} />)
+    () => <Error
+      onClose={action("onClose")}
+      message={"Could not Save"} />)
   .add("Appointment Empty",
     () => (
       <Fragment>
