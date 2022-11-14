@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import DayList from "./DayList";
 import "components/Application.scss";
 import "components/Appointment";
 import Appointment from "components/Appointment";
-import axios from "axios";
+
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
 
 export default function Application(props) {
-  //Separation of concerns 
+  //Separation of concerns
   const {
     state,
-    setState,
     setDay,
     bookInterview,
     cancelInterview
@@ -38,29 +37,6 @@ export default function Application(props) {
 
     );
   });
-
-
-  //Variables with axios get URLs for our Promise array
-  const promise_days = axios.get("/api/days");
-  const promise_appointments = axios.get("/api/appointments");
-  const promise_interviewers = axios.get("/api/interviewers");
-
-  // Fetching all the data from our API with Promise.all function
-  useEffect(() => {
-    Promise.all([
-      promise_days,
-      promise_appointments,
-      promise_interviewers
-    ]).then((res) => {
-      setState(prev =>
-      ({
-        ...prev, days: res[0].data,
-        appointments: res[1].data,
-        interviewers: res[2].data
-      }));
-    });
-  }, []); //keeping this array empty so there won't be an infinite get request loop
-
 
   return (
     <main className="layout">
