@@ -72,4 +72,5 @@ Cypress
 - After we confirmed our cancellation we will see an animation with the process! !["After we confirmed our cancellation we will see an animation with the process!"](public/images/github/gh6.png)
 
 <hr>
+
 ### Made by [Kayden](https://github.com/iKayden)
